@@ -2,84 +2,102 @@ import { motion } from "framer-motion";
 import AnimatedLetters from "@/components/AnimatedLetters";
 
 const stats = [
-  { number: "47", label: "Projects" },
-  { number: "12", label: "Countries" },
-  { number: "6", label: "Awards" },
+  { number: "120+", label: "Projects Delivered" },
+  { number: "8+", label: "Years Experience" },
+  { number: "15", label: "Team Members" },
+  { number: "25+", label: "Clients Worldwide" },
 ];
 
 const AboutSection = () => {
   return (
-    <section id="about" className="snap-section flex items-center justify-center px-8">
-      <motion.div
-        className="mx-auto max-w-3xl text-center"
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        transition={{ duration: 0.5 }}
-        viewport={{ once: true }}
-      >
-        <motion.p
-          className="mb-4 font-body text-xs uppercase tracking-[0.4em] text-muted-foreground"
-          initial={{ opacity: 0, letterSpacing: "1em" }}
-          whileInView={{ opacity: 1, letterSpacing: "0.4em" }}
-          transition={{ duration: 1 }}
-          viewport={{ once: true }}
-        >
-          About
-        </motion.p>
-        <h2 className="font-display text-4xl font-extrabold uppercase tracking-tight text-foreground md:text-6xl">
-          <AnimatedLetters text="Cinema, Not" style="wave" staggerDelay={0.05} />
-          <br />
-          <AnimatedLetters text="Software" style="wave" delay={0.4} staggerDelay={0.05} />
-        </h2>
+    <section id="about" className="snap-section relative flex items-center justify-center px-6 md:px-12 lg:px-16">
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_left,_hsl(36_100%_50%/0.04)_0%,_transparent_60%)]" />
 
-        <motion.p
-          className="mx-auto mt-8 max-w-xl font-body text-base leading-loose text-muted-foreground"
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.6 }}
-          viewport={{ once: true }}
-        >
-          Stillpoint is a collective of cinematographers, editors, and visual
-          architects. We believe that every frame should carry weight, every cut
-          should have purpose, and every project should feel like walking into a
-          darkened theater for the first time.
-        </motion.p>
-        <motion.p
-          className="mx-auto mt-6 max-w-xl font-body text-base leading-loose text-muted-foreground"
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.8 }}
-          viewport={{ once: true }}
-        >
-          Founded in 2019, we've partnered with brands and institutions that
-          share our obsession with atmosphere — from Fortune 500 campaigns to
-          museum installations that blur the line between film and architecture.
-        </motion.p>
-
-        <div className="mt-16 flex justify-center gap-16 md:gap-24">
-          {stats.map((stat, i) => (
+      <div className="relative z-10 mx-auto max-w-5xl">
+        <div className="grid items-center gap-12 md:grid-cols-2 md:gap-16">
+          {/* Left - Content */}
+          <div>
             <motion.div
-              key={stat.label}
-              initial={{ opacity: 0, scale: 0, rotate: -20 }}
-              whileInView={{ opacity: 1, scale: 1, rotate: 0 }}
-              transition={{
-                duration: 0.6,
-                delay: 1 + i * 0.15,
-                type: "spring",
-                stiffness: 120,
-              }}
+              className="mb-4 flex items-center gap-3"
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              transition={{ duration: 0.8 }}
               viewport={{ once: true }}
             >
-              <span className="font-display text-4xl font-extrabold text-foreground md:text-5xl">
-                {stat.number}
+              <span className="h-[1px] w-6 bg-primary md:w-10" />
+              <span className="font-body text-[10px] font-medium uppercase tracking-[0.4em] text-muted-foreground md:text-xs">
+                Who We Are
               </span>
-              <p className="mt-2 font-body text-xs uppercase tracking-[0.3em] text-muted-foreground">
-                {stat.label}
-              </p>
             </motion.div>
-          ))}
+
+            <h2 className="font-display text-3xl font-extrabold uppercase tracking-tight text-foreground sm:text-4xl md:text-5xl lg:text-6xl">
+              <AnimatedLetters text="Built on" style="wave" staggerDelay={0.05} />
+              <br />
+              <span className="text-primary">
+                <AnimatedLetters text="Passion" style="wave" delay={0.3} staggerDelay={0.06} />
+              </span>
+            </h2>
+
+            <motion.p
+              className="mt-6 font-body text-xs leading-loose text-muted-foreground sm:text-sm md:mt-8 md:text-base"
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.5 }}
+              viewport={{ once: true }}
+            >
+              Khalsa Productions was born from a simple belief — great stories deserve 
+              great craft. We're a collective of filmmakers, editors, colorists, and 
+              creative directors who treat every project like it's our magnum opus.
+            </motion.p>
+
+            <motion.p
+              className="mt-4 font-body text-xs leading-loose text-muted-foreground sm:text-sm md:text-base"
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.7 }}
+              viewport={{ once: true }}
+            >
+              From pre-production planning to final delivery, we bring an obsessive 
+              attention to detail and a collaborative spirit that turns ambitious 
+              visions into unforgettable visual experiences.
+            </motion.p>
+
+            <motion.div
+              className="mt-8 h-[1px] w-16 bg-primary"
+              initial={{ width: 0 }}
+              whileInView={{ width: 64 }}
+              transition={{ delay: 0.9, duration: 0.6 }}
+              viewport={{ once: true }}
+            />
+          </div>
+
+          {/* Right - Stats */}
+          <div className="grid grid-cols-2 gap-6 md:gap-8">
+            {stats.map((stat, i) => (
+              <motion.div
+                key={stat.label}
+                className="group border border-border/30 p-5 transition-colors duration-500 hover:border-primary/30 md:p-6"
+                initial={{ opacity: 0, y: 30, scale: 0.95 }}
+                whileInView={{ opacity: 1, y: 0, scale: 1 }}
+                transition={{
+                  duration: 0.5,
+                  delay: 0.8 + i * 0.1,
+                  type: "spring",
+                  stiffness: 120,
+                }}
+                viewport={{ once: true }}
+              >
+                <span className="font-display text-2xl font-extrabold text-foreground transition-colors duration-300 group-hover:text-primary sm:text-3xl md:text-4xl">
+                  {stat.number}
+                </span>
+                <p className="mt-2 font-body text-[10px] uppercase tracking-[0.2em] text-muted-foreground sm:text-xs">
+                  {stat.label}
+                </p>
+              </motion.div>
+            ))}
+          </div>
         </div>
-      </motion.div>
+      </div>
     </section>
   );
 };
