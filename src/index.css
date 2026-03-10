@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600&family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -6,47 +6,47 @@
 
 @layer base {
   :root {
-    --background: 0 0% 6.7%;
-    --foreground: 0 0% 100%;
+    --background: 0 0% 5%;
+    --foreground: 40 20% 95%;
 
-    --card: 0 0% 9%;
-    --card-foreground: 0 0% 100%;
+    --card: 0 0% 8%;
+    --card-foreground: 40 20% 95%;
 
-    --popover: 0 0% 9%;
-    --popover-foreground: 0 0% 100%;
+    --popover: 0 0% 8%;
+    --popover-foreground: 40 20% 95%;
 
-    --primary: 22 100% 50%;
-    --primary-foreground: 0 0% 100%;
+    --primary: 36 100% 50%;
+    --primary-foreground: 0 0% 5%;
 
-    --secondary: 0 0% 13%;
-    --secondary-foreground: 0 0% 100%;
+    --secondary: 0 0% 12%;
+    --secondary-foreground: 40 20% 95%;
 
-    --muted: 0 0% 15%;
-    --muted-foreground: 0 0% 55%;
+    --muted: 0 0% 14%;
+    --muted-foreground: 0 0% 50%;
 
-    --accent: 22 100% 50%;
-    --accent-foreground: 0 0% 100%;
+    --accent: 36 100% 50%;
+    --accent-foreground: 0 0% 5%;
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 0 0% 18%;
-    --input: 0 0% 18%;
-    --ring: 22 100% 50%;
+    --border: 0 0% 16%;
+    --input: 0 0% 16%;
+    --ring: 36 100% 50%;
 
     --radius: 0px;
 
-    --sidebar-background: 0 0% 6.7%;
-    --sidebar-foreground: 0 0% 100%;
-    --sidebar-primary: 22 100% 50%;
-    --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 0 0% 13%;
-    --sidebar-accent-foreground: 0 0% 100%;
-    --sidebar-border: 0 0% 18%;
-    --sidebar-ring: 22 100% 50%;
+    --sidebar-background: 0 0% 5%;
+    --sidebar-foreground: 40 20% 95%;
+    --sidebar-primary: 36 100% 50%;
+    --sidebar-primary-foreground: 0 0% 5%;
+    --sidebar-accent: 0 0% 12%;
+    --sidebar-accent-foreground: 40 20% 95%;
+    --sidebar-border: 0 0% 16%;
+    --sidebar-ring: 36 100% 50%;
 
     --font-display: 'Syne', sans-serif;
-    --font-body: 'Inter', sans-serif;
+    --font-body: 'Space Grotesk', 'Inter', sans-serif;
   }
 }
 
@@ -60,10 +60,16 @@
     font-family: var(--font-body);
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
   }
 
   h1, h2, h3, h4, h5, h6 {
     font-family: var(--font-display);
+  }
+
+  ::selection {
+    background: hsl(36 100% 50% / 0.3);
+    color: hsl(40 20% 95%);
   }
 }
 
@@ -77,25 +83,38 @@
   }
 
   .text-glow {
-    text-shadow: 0 0 40px hsl(22 100% 50% / 0.3);
+    text-shadow: 0 0 60px hsl(36 100% 50% / 0.4), 0 0 120px hsl(36 100% 50% / 0.1);
+  }
+
+  .text-stroke {
+    -webkit-text-stroke: 1.5px hsl(40 20% 95%);
+    color: transparent;
+  }
+
+  .line-reveal {
+    clip-path: inset(0 100% 0 0);
+  }
+
+  .line-reveal-visible {
+    clip-path: inset(0 0% 0 0);
   }
 }
 
 /* Scrollbar styling */
 ::-webkit-scrollbar {
-  width: 4px;
+  width: 3px;
 }
 
 ::-webkit-scrollbar-track {
-  background: hsl(0 0% 6.7%);
+  background: hsl(0 0% 5%);
 }
 
 ::-webkit-scrollbar-thumb {
-  background: hsl(0 0% 25%);
+  background: hsl(0 0% 20%);
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: hsl(22 100% 50%);
+  background: hsl(36 100% 50%);
 }
 
 /* Snap scrolling */
@@ -108,4 +127,39 @@
 .snap-section {
   scroll-snap-align: start;
   min-height: 100vh;
+}
+
+/* Marquee animation */
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.animate-marquee {
+  animation: marquee 20s linear infinite;
+}
+
+/* Noise texture overlay */
+.noise-overlay::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Horizontal line decoration */
+.line-accent::after {
+  content: '';
+  display: block;
+  width: 60px;
+  height: 2px;
+  background: hsl(36 100% 50%);
+  margin-top: 1.5rem;
+}
+
+.line-accent-center::after {
+  margin-left: auto;
+  margin-right: auto;
 }
