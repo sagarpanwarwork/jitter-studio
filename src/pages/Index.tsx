@@ -1,13 +1,26 @@
-// Update this page (the content is just a fallback if you fail to update the page)
+import { useState, useCallback } from "react";
+import LoadingCurtain from "@/components/LoadingCurtain";
+import Navigation from "@/components/Navigation";
+import HeroSection from "@/components/HeroSection";
+import WorkSection from "@/components/WorkSection";
+import AboutSection from "@/components/AboutSection";
+import ContactSection from "@/components/ContactSection";
 
 const Index = () => {
+  const [loaded, setLoaded] = useState(false);
+  const handleComplete = useCallback(() => setLoaded(true), []);
+
   return (
-    <div className="flex min-h-screen items-center justify-center bg-background">
-      <div className="text-center">
-        <h1 className="mb-4 text-4xl font-bold">Welcome to Your Blank App</h1>
-        <p className="text-xl text-muted-foreground">Start building your amazing project here!</p>
+    <>
+      <LoadingCurtain onComplete={handleComplete} />
+      {loaded && <Navigation />}
+      <div className="snap-container">
+        <HeroSection />
+        <WorkSection />
+        <AboutSection />
+        <ContactSection />
       </div>
-    </div>
+    </>
   );
 };
 
